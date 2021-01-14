@@ -6,14 +6,14 @@ export const setTradeResult = ({state, commit}, tradeResult) => {
         purchase : state.purchase,
         sale : state.sale,
     }
-    Vue.http.put("https://urun-islemleri-c5282-default-rtdb.firebaseio.com/trade-result.json", result)
+    Vue.http.put("YOUR DATABASE URL/trade-result.json", result)
     .then((response) => {
         console.log(response);
     })
 }
 
 export const getTradeResult = ({commit}) => {
-    Vue.http.get("https://urun-islemleri-c5282-default-rtdb.firebaseio.com/trade-result.json")
+    Vue.http.get("YOUR DATABASE URL/trade-result.json")
     .then((response) => {
         commit("updateTradeResult", response.body)
     })

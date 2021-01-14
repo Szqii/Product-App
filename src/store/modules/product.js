@@ -24,7 +24,7 @@ const mutations = {
 
 const actions = {
   initApp({commit}){
-    Vue.http.get("https://urun-islemleri-c5282-default-rtdb.firebaseio.com/products.json")
+    Vue.http.get("YOUR DATABASE URL/products.json")
     .then(response => {
       let data = response.body;
       for(let key in data){
@@ -35,7 +35,7 @@ const actions = {
   },
 
   saveProduct( {commit, dispatch} ,product){
-    Vue.http.post("https://urun-islemleri-c5282-default-rtdb.firebaseio.com/products.json", product)
+    Vue.http.post("YOUR DATABASE URL/products.json", product)
     .then((response) => {
       // Ürün Listesinin Güncellemesi \\
       product.id = response.body.name
@@ -57,7 +57,7 @@ const actions = {
     })
     if(product){
       let totalSellCount = product[0].count - payload.count
-      Vue.http.patch("https://urun-islemleri-c5282-default-rtdb.firebaseio.com/products/" + payload.key + ".json", {count : totalSellCount})
+      Vue.http.patch("YOUR DATABASE URL/products/" + payload.key + ".json", {count : totalSellCount})
       .then( () => {
         product[0].count = totalSellCount;
         // Bakiyenin güncellenmesi
