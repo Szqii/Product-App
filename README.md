@@ -1,4 +1,5 @@
 # product-app
+**[Thanks to Gökhan Kandemir and his brilliant VueJS Education on Udemy](https://www.udemy.com/share/101CT2CUcbcFhTRng=/)**
 
 ## Project setup
 ```
