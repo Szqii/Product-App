@@ -1,32 +1,48 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <Navbar></Navbar>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
+    <Footer></Footer>
   </div>
 </template>
 
+<script>
+import Navbar from "./components/shared/Navbar.vue";
+import Footer from "./components/shared/Footer.vue";
+
+export default {
+  components: {
+    Navbar,
+    Footer,
+  },
+  created() {
+    this.$store.dispatch("getTradeResult");
+    this.$store.dispatch("initApp")
+  },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgba(#ff8b8b, 0.3);
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.fade-enter{
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: opacity .5s ease-out;
+}
+.fade-leave{}
+.fade-leave-active{
+  opacity: 0;
+  transition: opacity .5s ease-out;
 }
 </style>
